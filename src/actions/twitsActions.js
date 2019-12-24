@@ -31,17 +31,18 @@ export const twitsGetUserSymbols = id => dispatch => {
 // GETTING DATA FOR A CERTAIN SYMBOL
 export const twitsGetData = symbol => dispatch => {
 
+  const front_url = "https://stock-twits-app.herokuapp.com/";
   // Axios instance 
   const instance = axios.create({
-    baseURL: 'https://api.stocktwits.com/api'
+    baseURL: front_url + 'https://api.stocktwits.com/api'
   });
 
   instance.defaults.headers.common['Authorization'] = '';
-  const front_url = "https://stock-twits-app.herokuapp.com/";
+
   const api_url = "2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
 
   instance
-    .get(front_url + api_url)
+    .get(api_url)
     .then(res => {
         dispatch({
             type: SET_TWITS_DATA,
