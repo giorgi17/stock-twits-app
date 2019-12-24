@@ -7,7 +7,8 @@ export const twitsGetUserSymbols = id => dispatch => {
 
   try {
     axios
-      .post("api/users/get-symbols", {'id': id})
+      // .post("api/users/get-symbols", {'id': id})
+      .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id})
       .then(res => {
         console.log("jandaba - " + JSON.stringify(res.data[0].symbols));
         dispatch({
@@ -73,7 +74,8 @@ export const twitsAddSymbol = (symbol, id) => dispatch => {
   console.log("CALLED!");
   try {
     instance
-      .post("/users/add-symbol", {'symbol': symbol, 'id': id})
+      // .post("/users/add-symbol", {'symbol': symbol, 'id': id})
+      .post("https://stock-twits-backend.herokuapp.com/users/add-symbol", {'symbol': symbol, 'id': id})
       .then(res => {
         console.log("Done!");
         dispatch({
