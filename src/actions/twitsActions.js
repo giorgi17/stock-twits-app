@@ -31,7 +31,7 @@ export const twitsGetUserSymbols = id => dispatch => {
 // GETTING DATA FOR A CERTAIN SYMBOL
 export const twitsGetData = symbol => dispatch => {
 
-  const front_url = "https://stock-twits-app.herokuapp.com/";
+  // const front_url = "https://stock-twits-app.herokuapp.com/";
   // Axios instance 
   const instance = axios.create({
     baseURL: front_url + 'https://api.stocktwits.com/api'
