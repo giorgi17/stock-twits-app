@@ -4,16 +4,8 @@ import { SET_TWITS_DATA, ADD_TWITS_SYMBOL, UPDATE_TWITS_SYMBOL_INPUT,
 
 // POPULATING SYMBOLS PROPERTY WITH USER SYMBOLS
 export const twitsGetUserSymbols = id => dispatch => {
-
   try {
-      // Axios instance 
-    const instance = axios.create({
-      baseURL: 'https://api.stocktwits.com/api'
-    });
-
-    instance.defaults.headers.common['Authorization'] = '';
-
-    instance
+    axios
       // .post("api/users/get-symbols", {'id': id})
       .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id})
       .then(res => {
@@ -45,11 +37,11 @@ export const twitsGetData = symbol => dispatch => {
   });
 
   instance.defaults.headers.common['Authorization'] = '';
-
+  const front_url = "https://stock-twits-app.herokuapp.com/";
   const api_url = "/2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
 
   instance
-    .get(api_url)
+    .get(front_url + api_url)
     .then(res => {
         dispatch({
             type: SET_TWITS_DATA,
