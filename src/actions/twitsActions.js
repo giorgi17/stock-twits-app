@@ -6,7 +6,14 @@ import { SET_TWITS_DATA, ADD_TWITS_SYMBOL, UPDATE_TWITS_SYMBOL_INPUT,
 export const twitsGetUserSymbols = id => dispatch => {
 
   try {
-    axios
+      // Axios instance 
+    const instance = axios.create({
+      baseURL: 'https://api.stocktwits.com/api'
+    });
+
+    instance.defaults.headers.common['Authorization'] = '';
+
+    instance
       // .post("api/users/get-symbols", {'id': id})
       .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id})
       .then(res => {
