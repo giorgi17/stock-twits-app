@@ -1,0 +1,17 @@
+#dashboard-row {
+  margin-top: 10vh;
+}
+
+#twits-diplay {
+  margin-top: 5vh;
+  background-color: #0C45A0;
+  color: white;
+}
+
+.twit {
+  /* border: 2px solid grey; */
+  /* border-radius: 10px;
+  box-shadow: 5px 5px black; */
+  /* margin: 20px; */
+  margin-top: 20px;
+}
