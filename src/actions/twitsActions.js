@@ -38,7 +38,7 @@ export const twitsGetData = symbol => dispatch => {
 
   instance.defaults.headers.common['Authorization'] = '';
   const front_url = "https://stock-twits-app.herokuapp.com/";
-  const api_url = "/2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
+  const api_url = "2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
 
   instance
     .get(front_url + api_url)
