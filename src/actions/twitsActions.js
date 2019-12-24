@@ -37,7 +37,8 @@ export const twitsGetData = symbol => dispatch => {
     baseURL: front_url + 'https://api.stocktwits.com/api'
   });
 
-  instance.defaults.headers.common['Authorization'] = '';
+  // instance.defaults.headers.common['Authorization'] = '';
+  delete instance.defaults.headers.common.Authorization
 
   const api_url = "2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
 
