@@ -30,9 +30,22 @@ export const twitsGetUserSymbols = id => dispatch => {
 
 // GETTING DATA FOR A CERTAIN SYMBOL
 export const twitsGetData = symbol => dispatch => {
+  // TEST
+  const api_url = "https://api.stocktwits.com/api/2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
+  fetch(api_url)
+  .then(res => dispatch({
+          type: SET_TWITS_DATA,
+          payload: res.json().data
+        }))
+  .then((data) => {
+    // this.setState({ contacts: data })
+  })
+  .catch(e => {console.log(e.message);});
+  // END TEST
 
   // const front_url = "https://stock-twits-app.herokuapp.com/";
   // Axios instance 
+  /*
   const instance = axios.create({
     baseURL: 'https://api.stocktwits.com/api'
   });
@@ -61,7 +74,7 @@ export const twitsGetData = symbol => dispatch => {
         payload: err.response.data
       });
     }
-    );
+    ); */
 };
 
 // ADDING NEW SYMBOL
