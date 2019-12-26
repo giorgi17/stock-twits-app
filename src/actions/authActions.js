@@ -25,7 +25,7 @@ export const registerUser = (userData, history) => dispatch => {
 export const loginTwitsUser = () => dispatch => {
   axios
     // .post("http://localhost:8888/api/users/login", userData)
-    .get("https://stock-twits-backend.herokuapp.com/api/users/stocktwits-login")
+    .get("https://stock-twits-backend.herokuapp.com/stocktwits-login")
     .then(res => {
         // Save to localStorage
   // Set token to localStorage
