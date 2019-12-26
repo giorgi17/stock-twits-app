@@ -6,7 +6,7 @@ import { SET_TWITS_DATA, ADD_TWITS_SYMBOL, UPDATE_TWITS_SYMBOL_INPUT,
 export const twitsGetUserSymbols = id => dispatch => {
   try {
     axios
-      // .post("api/users/get-symbols", {'id': id})
+      // .post("http://localhost:8888/api/users/get-symbols", {'id': id})
       .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id})
       .then(res => {
         console.log("jandaba - " + JSON.stringify(res.data[0].symbols));
@@ -30,51 +30,31 @@ export const twitsGetUserSymbols = id => dispatch => {
 
 // GETTING DATA FOR A CERTAIN SYMBOL
 export const twitsGetData = symbol => dispatch => {
-  // TEST
-  const api_url = "https://api.stocktwits.com/api/2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
-  fetch(api_url)
-  .then(res => dispatch({
-          type: SET_TWITS_DATA,
-          payload: res.json().data
-        }))
-  .then((data) => {
-    // this.setState({ contacts: data })
-  })
-  .catch(e => {console.log(e.message);});
-  // END TEST
+  // const api_url = "http://localhost:8888/api/users/get-twits-data";
+  const api_url = "https://stock-twits-backend.herokuapp.com/api/users/get-twits-data";
 
-  // const front_url = "https://stock-twits-app.herokuapp.com/";
-  // Axios instance 
-  /*
-  const instance = axios.create({
-    baseURL: 'https://api.stocktwits.com/api'
-  });
-
-  // instance.defaults.headers.common['Authorization'] = '';
-  delete instance.defaults.headers.common.Authorization
-
-  const api_url = "2/streams/symbol/" + symbol.target.value.toUpperCase() + ".json";
-
-  instance
-    .get(api_url)
+  axios
+    .post(api_url, {'symbol': symbol.target.value})
     .then(res => {
+        // console.log("SECOND - " + res.symbol.symbol);
         dispatch({
             type: SET_TWITS_DATA,
             payload: res.data
         })
     }) 
     .catch(err => {
+      console.log("SECOND ERROR- " + err.message);
       dispatch({
         type: UPDATE_TWITS_SYMBOL_NOT_FOUND,
         payload: "Symbol not found"
       });
 
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      });
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response
+      // });
     }
-    ); */
+    ); 
 };
 
 // ADDING NEW SYMBOL

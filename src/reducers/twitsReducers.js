@@ -18,7 +18,6 @@ export default function(state = initialState, action) {
           ...state,
             data: [],
       };
-      break;
 
     case GET_TWITS_USER_SYMBOLS:
       const symbol_obj = {};
@@ -31,7 +30,6 @@ export default function(state = initialState, action) {
               ... symbol_obj
             }
       };
-      break;
 
     case SET_TWITS_DATA:
       return {
@@ -42,7 +40,6 @@ export default function(state = initialState, action) {
               [action.payload.symbol.symbol]: action.payload.messages.length
             }
       };
-      break;
 
     case ADD_TWITS_SYMBOL:
       return {
@@ -54,7 +51,6 @@ export default function(state = initialState, action) {
               [action.payload]: 0
             }
       };
-      break;
 
       case UPDATE_TWITS_SYMBOL_INPUT:
         return {
