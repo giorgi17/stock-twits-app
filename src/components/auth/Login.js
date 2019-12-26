@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { loginUser, loginTwitsUser } from "../../actions/authActions";
 import classnames from "classnames";
 import stocktwitsLogo from '../../assets/images/stocktwits-logo.png';
 import axios from 'axios';
@@ -33,17 +33,6 @@ if (nextProps.errors) {
       errors: nextProps.errors
     });
   }
-}
-  
-onSubmitStocktwits = () => {
-  axios.get("/stocktwits-login").then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
 }
 
 onChange = e => {
@@ -138,7 +127,7 @@ return (
                       letterSpacing: "1.5px",
                       marginTop: "1rem"
                     }}
-                    onClick={this.onSubmitStocktwits}
+                    onClick={this.props.loginTwitsUser}
                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                   >
                     Login with stocktwits <img src={stocktwitsLogo} width="100px" height="42px" ></img>
@@ -166,5 +155,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, loginTwitsUser }
 )(Login);
