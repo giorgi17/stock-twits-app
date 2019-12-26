@@ -36,7 +36,8 @@ if (nextProps.errors) {
 }
 
 onStocktwitsSubmit = e => {
-  this.props.history.push("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login");
+  // this.props.history.push("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login");
+  window.location.href = 'https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login'; 
 }
 
 onChange = e => {
