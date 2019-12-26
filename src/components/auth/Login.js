@@ -35,6 +35,10 @@ if (nextProps.errors) {
   }
 }
 
+onStocktwitsSubmit = e => {
+  this.props.history.push("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login");
+}
+
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -127,7 +131,7 @@ return (
                       letterSpacing: "1.5px",
                       marginTop: "1rem"
                     }}
-                    onClick={this.props.loginTwitsUser}
+                    onClick={this.onStocktwitsSubmit}
                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                   >
                     Login with stocktwits <img src={stocktwitsLogo} width="100px" height="42px" ></img>
