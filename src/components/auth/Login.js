@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { loginUser, loginTwitsUser } from "../../actions/authActions";
 import classnames from "classnames";
 import stocktwitsLogo from '../../assets/images/stocktwits-logo.png';
+import queryString from 'query-string'
 import axios from 'axios';
 
 class Login extends Component {
@@ -22,10 +23,13 @@ componentDidMount() {
   if (this.props.auth.isAuthenticated) {
     this.props.history.push("/dashboard");
   }
+  const values = queryString.parse(this.props.location.search)
   console.log("FFF");
   console.log(this.props.match.params.success);
   console.log(this.props.match.params.token);
   console.log(this.props.match.params);
+  console.log(values.success);
+  console.log(values.token);
 }
 
 componentWillReceiveProps(nextProps) {
