@@ -25,6 +25,7 @@ componentDidMount() {
   console.log("FFF");
   console.log(this.props.match.params.success);
   console.log(this.props.match.params.token);
+  console.log(this.props.match.params);
 }
 
 componentWillReceiveProps(nextProps) {
