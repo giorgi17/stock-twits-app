@@ -22,28 +22,25 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Stocktwits-Login - get user token from stocktwits user
-export const loginTwitsUser = () => dispatch => {
-  axios
-    // .post("http://localhost:8888/api/users/login", userData)
-    .get("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login")
-    .then(res => {
-        // Save to localStorage
-  // Set token to localStorage
-        const { token } = res.data;
-        localStorage.setItem("jwtToken", token);
-        // Set token to Auth header
-        setAuthToken(token);
-        // Decode token to get user data
-        const decoded = jwt_decode(token);
-        // Set current user
-        dispatch(setCurrentUser(decoded));
+export const loginTwitsUser = (queryStringData) => dispatch => {
+
+  try {
+    // Save to localStorage
+      // Set token to localStorage
+      const { token } = queryStringData;
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+  } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
       })
-      .catch(err =>
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        })
-      );
+  }      
 };
 
 // Login - get user token

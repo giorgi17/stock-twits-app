@@ -23,11 +23,10 @@ componentDidMount() {
   if (this.props.auth.isAuthenticated) {
     this.props.history.push("/dashboard");
   }
-  const values = queryString.parse(this.props.location.search)
-  console.log("FFF");
-  console.log(this.props.match.params.success);
-  console.log(this.props.match.params.token);
-  console.log(this.props.match.params);
+  const values = queryString.parse(this.props.location.search);
+  if (values.success && values.token) {
+    loginTwitsUser(values);
+  }
   console.log(values.success);
   console.log(values.token);
 }
