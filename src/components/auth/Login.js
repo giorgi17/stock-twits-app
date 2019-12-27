@@ -22,6 +22,9 @@ componentDidMount() {
   if (this.props.auth.isAuthenticated) {
     this.props.history.push("/dashboard");
   }
+  console.log("FFF");
+  console.log(this.props.match.params.success);
+  console.log(this.props.match.params.token);
 }
 
 componentWillReceiveProps(nextProps) {
