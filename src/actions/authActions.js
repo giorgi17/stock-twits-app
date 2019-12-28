@@ -33,6 +33,7 @@ export const loginTwitsUser = (queryStringData) => dispatch => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
+      console.log(decoded);
       // Set current user
       dispatch(setCurrentUser(decoded));
   } catch (err) {
@@ -69,6 +70,7 @@ export const loginUser = userData => dispatch => {
 };
 // Set logged in user
 export const setCurrentUser = decoded => {
+  console.log("Set logged in user - dispatched!");
   return {
     type: SET_CURRENT_USER,
     payload: decoded
