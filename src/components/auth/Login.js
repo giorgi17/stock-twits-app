@@ -25,7 +25,7 @@ componentDidMount() {
   }
   const values = queryString.parse(this.props.location.search);
   if (values.success && values.token) {
-    loginTwitsUser(values);
+    this.props.loginTwitsUser(values);
   }
   console.log(values.success);
   console.log(values.token);
@@ -156,6 +156,7 @@ return (
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  loginTwitsUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
