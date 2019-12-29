@@ -59,17 +59,14 @@ export const twitsGetData = symbol => dispatch => {
 
 // ADDING NEW SYMBOL
 export const twitsAddSymbol = (symbol, id, stock) => dispatch => {
-  // Axios instance 
-  const instance = axios.create({
-    baseURL: '/api'
-  });
+  const api_url = "https://stock-twits-backend.herokuapp.com/api/users/add-symbol";
 
   // instance.defaults.headers.common['Authorization'] = '';
   console.log("CALLED!");
   try {
-    instance
+    axios
       // .post("/users/add-symbol", {'symbol': symbol, 'id': id})
-      .post("https://stock-twits-backend.herokuapp.com/users/add-symbol", {'symbol': symbol, 'id': id, 'stock': stock})
+      .post(api_url, {'symbol': symbol, 'id': id, 'stock': stock})
       .then(res => {
         console.log("Done!");
         dispatch({
