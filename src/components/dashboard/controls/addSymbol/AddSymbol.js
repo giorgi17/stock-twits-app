@@ -27,8 +27,8 @@ const addSymbol = props => {
         }
     }
 
-    const whichUser = user.hasOwnProperty("access_token") ? true : false;
-    const whichUserId = user.hasOwnProperty("access_token") ? this.props.auth.user.user_id : this.props.auth.user.id;
+    const whichUser = props.userId.hasOwnProperty("access_token") ? true : false;
+    const whichUserId = props.userId.hasOwnProperty("access_token") ? props.userId.user_id : props.userId.id;
 
     return (
         <form className="col s6 valign-wrapper">
