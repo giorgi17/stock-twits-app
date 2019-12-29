@@ -39,7 +39,12 @@ componentDidMount() {
 
 
   // this.props.twitsGetData("ui");
-  this.props.twitsGetUserSymbols(this.props.auth.user.id);
+
+  //  Get user symbols from database
+  const user = this.props.auth.user.id;
+  const whichUser = user.hasOwnProperty("access_token") ? true : false;
+  const whichUserId = user.hasOwnProperty("access_token") ? this.props.auth.user.user_id : this.props.auth.user.id;
+  this.props.twitsGetUserSymbols(whichUserId, whichUser);
 }
 
 componentWillUpdate() {

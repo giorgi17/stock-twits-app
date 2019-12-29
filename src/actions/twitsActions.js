@@ -3,11 +3,11 @@ import { SET_TWITS_DATA, ADD_TWITS_SYMBOL, UPDATE_TWITS_SYMBOL_INPUT,
   GET_TWITS_USER_SYMBOLS, UPDATE_TWITS_SYMBOL_NOT_FOUND, GET_ERRORS } from "./types";
 
 // POPULATING SYMBOLS PROPERTY WITH USER SYMBOLS
-export const twitsGetUserSymbols = id => dispatch => {
+export const twitsGetUserSymbols = (id, stock) => dispatch => {
   try {
     axios
       // .post("http://localhost:8888/api/users/get-symbols", {'id': id})
-      .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id})
+      .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id, 'stock': stock})
       .then(res => {
         console.log("jandaba - " + JSON.stringify(res.data[0].symbols));
         dispatch({
