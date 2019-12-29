@@ -19,7 +19,7 @@ export const twitsGetUserSymbols = (id, stock) => dispatch => {
         console.log("Error is - " + err.message);
         dispatch({
           type: GET_ERRORS,
-          payload: err.response.data
+          payload: err.message
         })
       });
     } catch (e) {
@@ -58,7 +58,7 @@ export const twitsGetData = symbol => dispatch => {
 };
 
 // ADDING NEW SYMBOL
-export const twitsAddSymbol = (symbol, id) => dispatch => {
+export const twitsAddSymbol = (symbol, id, stock) => dispatch => {
   // Axios instance 
   const instance = axios.create({
     baseURL: '/api'
@@ -69,7 +69,7 @@ export const twitsAddSymbol = (symbol, id) => dispatch => {
   try {
     instance
       // .post("/users/add-symbol", {'symbol': symbol, 'id': id})
-      .post("https://stock-twits-backend.herokuapp.com/users/add-symbol", {'symbol': symbol, 'id': id})
+      .post("https://stock-twits-backend.herokuapp.com/users/add-symbol", {'symbol': symbol, 'id': id, 'stock': stock})
       .then(res => {
         console.log("Done!");
         dispatch({

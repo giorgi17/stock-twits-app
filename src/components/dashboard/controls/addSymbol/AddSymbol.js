@@ -27,6 +27,9 @@ const addSymbol = props => {
         }
     }
 
+    const whichUser = user.hasOwnProperty("access_token") ? true : false;
+    const whichUserId = user.hasOwnProperty("access_token") ? this.props.auth.user.user_id : this.props.auth.user.id;
+
     return (
         <form className="col s6 valign-wrapper">
             {/* <div> RATOOOM - {error.empty}</div> */}
@@ -44,7 +47,7 @@ const addSymbol = props => {
                 <span className="red-text" id="symbol-red-text" >{props.error}</span>
             </div>
             <input type="submit" value="Add" className="waves-effect waves-light btn"
-                onClick={(e) => { e.preventDefault(); props.click(props.inputValue, props.userId)}} />
+                onClick={(e) => { e.preventDefault(); props.click(props.inputValue, whichUserId, whichUser)}} />
         </form>
     )
 };

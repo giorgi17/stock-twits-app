@@ -115,7 +115,7 @@ return (
         </div>
           
         <div className="row controls valign-wrapper">
-          <AddSymbol click={this.props.twitsAddSymbol} change={this.props.updateNewSymbolInput} inputValue={this.props.twits.addNewSymbolInput} error={this.props.twits.addNewSymbolInputError} userId={this.props.auth.user.id} ></AddSymbol>
+          <AddSymbol click={this.props.twitsAddSymbol} change={this.props.updateNewSymbolInput} inputValue={this.props.twits.addNewSymbolInput} error={this.props.twits.addNewSymbolInputError} userId={this.props.auth.user} ></AddSymbol>
           {/* <a className="waves-effect waves-light btn">button</a> */}
         </div>
 
