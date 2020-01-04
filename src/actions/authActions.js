@@ -8,11 +8,15 @@ import {
 } from "./types";
 
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (userData, history, loading) => dispatch => {
+  loading();
   axios
-    // .post("/api/users/register", userData)
+    // .post("http://localhost:8888/api/users/register", userData)
     .post("https://stock-twits-backend.herokuapp.com/api/users/register", userData)
-    .then(res => history.push("/login")) // re-direct to login on successful register
+    .then(res => {
+        loading();
+        history.push("/login");
+    }) // re-direct to login on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -22,7 +26,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Stocktwits-Login - get user token from stocktwits user
-export const loginTwitsUser = (queryStringData) => dispatch => {
+export const loginTwitsUser = (queryStringData, loading) => dispatch => {
 
   try {
     // Save to localStorage
@@ -36,20 +40,24 @@ export const loginTwitsUser = (queryStringData) => dispatch => {
       console.log(decoded);
       // Set current user
       dispatch(setCurrentUser(decoded));
+      loading();
   } catch (err) {
       dispatch({
         type: GET_ERRORS,
         payload: err
-      })
+      });
+      loading();
   }      
 };
 
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData, loading) => dispatch => {
+  loading();
   axios
     // .post("http://localhost:8888/api/users/login", userData)
     .post("https://stock-twits-backend.herokuapp.com/api/users/login", userData)
     .then(res => {
+        loading();
         // Save to localStorage
   // Set token to localStorage
         const { token } = res.data;
@@ -61,12 +69,13 @@ export const loginUser = userData => dispatch => {
         // Set current user
         dispatch(setCurrentUser(decoded));
       })
-      .catch(err =>
+      .catch(err => {
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data
-        })
-      );
+        });
+        loading();
+      });
 };
 // Set logged in user
 export const setCurrentUser = decoded => {
@@ -77,10 +86,10 @@ export const setCurrentUser = decoded => {
   };
 };
 // User loading
-export const setUserLoading = () => {
-  return {
+export const setUserLoading = () => dispatch => {
+  dispatch({
     type: USER_LOADING
-  };
+  });
 };
 // Log user out
 export const logoutUser = () => dispatch => {

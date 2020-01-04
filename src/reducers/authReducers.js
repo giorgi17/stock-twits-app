@@ -20,7 +20,7 @@ import {
       case USER_LOADING:
         return {
           ...state,
-          loading: true
+          loading: !state.loading
         };
       default:
         return state;

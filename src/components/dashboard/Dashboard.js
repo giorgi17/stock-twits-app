@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
+import { logoutUser, setUserLoading } from "../../actions/authActions";
 import { twitsGetData, twitsAddSymbol, updateNewSymbolInput,
-  twitsGetUserSymbols } from "../../actions/twitsActions";
+  twitsGetUserSymbols, twitsDeleteSymbol } from "../../actions/twitsActions";
 import './Dashboard.css';
 import TwitCard from './twitCard/TwitCard';
 import Controls from './controls/Controls';
 import AddSymbol from './controls/addSymbol/AddSymbol';
+import Loading from '../layout/Loading/Loading';
 import axios from "axios";
 
 class Dashboard extends Component {
@@ -44,7 +45,8 @@ componentDidMount() {
   const user = this.props.auth.user;
   const whichUser = user.hasOwnProperty("access_token") ? true : false;
   const whichUserId = user.hasOwnProperty("access_token") ? this.props.auth.user.user_id : this.props.auth.user.id;
-  this.props.twitsGetUserSymbols(whichUserId, whichUser);
+  this.props.twitsGetUserSymbols(whichUserId, whichUser, this.props.setUserLoading);
+  console.log("Fuck u 2 - " + this.props.twitsDeleteSymbol);
 }
 
 componentWillUpdate() {
@@ -61,14 +63,15 @@ componentDidUpdate() {
 }
 
 render() {
-    const { user } = this.props.auth;
+
+    const { user, loading } = this.props.auth;
     let twitData;
 
     if (this.props.twits.data.length != 0) {
 
       twitData = this.props.twits.data.map(item => {
         return <TwitCard content={item.body} username={item.user.username}
-                avatar={item.user.avatar_url} pic={item.entities} key={item.id}></TwitCard>;
+                avatar={item.user.avatar_url} pic={item.entities} keyId={item.id} key={item.id}></TwitCard>;
       });
     } else {
       twitData = <div className="row twit">
@@ -85,6 +88,7 @@ render() {
     
 return (
       <div style={{ height: "75vh" }} className="container">
+        {loading ? <Loading></Loading> : null}
         <div className="row" id="dashboard-row">
           <div className="col s12 center-align valign">
             <h4>
@@ -110,12 +114,14 @@ return (
         </div>
         
         <div className="row controls valign-wrapper">
-          &nbsp;&nbsp;&nbsp; <h3><b>Select symbol</b></h3>
-          <Controls symbols={Object.keys(this.props.twits.symbols)} change={this.props.twitsGetData} ></Controls>
+          &nbsp;&nbsp;&nbsp; <div className="col l3 center-align">
+                                <h3><b>Select symbol</b></h3>
+                              </div>
+          <Controls symbols={Object.keys(this.props.twits.symbols)} change={this.props.twitsGetData} userId={this.props.auth.user} deleteSymbolAction={this.props.twitsDeleteSymbol} loading={this.props.setUserLoading}></Controls>
         </div>
           
         <div className="row controls valign-wrapper">
-          <AddSymbol click={this.props.twitsAddSymbol} change={this.props.updateNewSymbolInput} inputValue={this.props.twits.addNewSymbolInput} error={this.props.twits.addNewSymbolInputError} userId={this.props.auth.user} ></AddSymbol>
+          <AddSymbol click={this.props.twitsAddSymbol} change={this.props.updateNewSymbolInput} inputValue={this.props.twits.addNewSymbolInput} error={this.props.twits.addNewSymbolInputError} userId={this.props.auth.user} loading={this.props.setUserLoading}></AddSymbol>
           {/* <a className="waves-effect waves-light btn">button</a> */}
         </div>
 
@@ -146,5 +152,5 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser, twitsGetData, twitsAddSymbol, updateNewSymbolInput,
-    twitsGetUserSymbols }
+    twitsGetUserSymbols, twitsDeleteSymbol, setUserLoading }
 )(Dashboard);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser, loginTwitsUser } from "../../actions/authActions";
+import { loginUser, loginTwitsUser, setUserLoading } from "../../actions/authActions";
 import classnames from "classnames";
 import stocktwitsLogo from '../../assets/images/stocktwits-logo.png';
 import queryString from 'query-string'
@@ -25,7 +25,7 @@ componentDidMount() {
   }
   const values = queryString.parse(this.props.location.search);
   if (values.success && values.token) {
-    this.props.loginTwitsUser(values);
+    this.props.loginTwitsUser(values, this.props.setUserLoading);
   }
   console.log(values.success);
   console.log(values.token);
@@ -43,6 +43,7 @@ if (nextProps.errors) {
 }
 
 onStocktwitsSubmit = e => {
+  this.props.setUserLoading();
   // this.props.history.push("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login");
   window.location.href = 'https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login'; 
 }
@@ -57,7 +58,7 @@ onSubmit = e => {
           email: this.state.email,
           password: this.state.password
         };
-        this.props.loginUser(userData); // since we handle the redirect 
+        this.props.loginUser(userData, this.props.setUserLoading); // since we handle the redirect 
     console.log(userData);
   };
 
@@ -168,5 +169,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser, loginTwitsUser }
+  { loginUser, loginTwitsUser, setUserLoading }
 )(Login);

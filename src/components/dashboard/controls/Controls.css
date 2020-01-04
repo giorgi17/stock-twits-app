@@ -7,4 +7,7 @@
 .display-select {
     display: block;
 }
-
+     
+#symbol-select {
+    min-width: 250px;
+}

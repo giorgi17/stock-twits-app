@@ -47,7 +47,7 @@ const addSymbol = props => {
                 <span className="red-text" id="symbol-red-text" >{props.error}</span>
             </div>
             <input type="submit" value="Add" className="waves-effect waves-light btn"
-                onClick={(e) => { e.preventDefault(); props.click(props.inputValue, whichUserId, whichUser)}} />
+                onClick={(e) => { e.preventDefault(); props.click(props.inputValue, whichUserId, whichUser, props.loading)}} />
         </form>
     )
 };
