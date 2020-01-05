@@ -2,27 +2,21 @@ import React from 'react';
 import './Controls.css';
 
 const Controls = props => {
-    console.log("FUCK U - " + props.deleteSymbolAction);
+
     const whichUser = props.userId.hasOwnProperty("access_token") ? true : false;
     const whichUserId = props.userId.hasOwnProperty("access_token") ? props.userId.user_id : props.userId.id;
     let targ = document.getElementById('symbol-select');
     
 
     const deleteSymbol = (deleteSymbolActionArg, targCopy) => {
-        console.log("THIS IS ELEMENT - " + targCopy.value);
-        console.log("THIS IS ELEMENT TYPE - " + typeof(targCopy.value));
         // let targ = document.getElementById('symbol-select');
         let val;
         if (targCopy != null) {
             val = targCopy.value;
         }
-        console.log(targCopy);
+        
         if (!targCopy) {
-            console.log("Undefined!");
         } else {
-            console.log("Defined!");
-            // console.log(deleteSymbolActionCopy);
-            console.log("IS - " + deleteSymbolActionArg);
             deleteSymbolActionArg(val, whichUserId, whichUser, props.loading);
         }
     }

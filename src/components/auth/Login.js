@@ -6,7 +6,6 @@ import { loginUser, loginTwitsUser, setUserLoading } from "../../actions/authAct
 import classnames from "classnames";
 import stocktwitsLogo from '../../assets/images/stocktwits-logo.png';
 import queryString from 'query-string'
-import axios from 'axios';
 
 class Login extends Component {
   constructor() {
@@ -27,8 +26,6 @@ componentDidMount() {
   if (values.success && values.token) {
     this.props.loginTwitsUser(values, this.props.setUserLoading);
   }
-  console.log(values.success);
-  console.log(values.token);
 }
 
 componentWillReceiveProps(nextProps) {
@@ -59,7 +56,6 @@ onSubmit = e => {
           password: this.state.password
         };
         this.props.loginUser(userData, this.props.setUserLoading); // since we handle the redirect 
-    console.log(userData);
   };
 
 render() {
@@ -143,7 +139,7 @@ return (
                     onClick={this.onStocktwitsSubmit}
                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                   >
-                    Login with stocktwits <img src={stocktwitsLogo} width="100px" height="42px" ></img>
+                    Login with stocktwits <img src={stocktwitsLogo} alt="stock-twit-login-pic" width="100px" height="42px" ></img>
                     <br></br>
                   </button>
                   {/* <img src={stocktwitsLogo} width="100px" height="42px" ></img> */}

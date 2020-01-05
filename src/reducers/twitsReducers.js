@@ -19,11 +19,10 @@ export default function(state = initialState, action) {
         delete symbolsCopy[action.payload.symbol];
         return {
           ...state,
-            symbols: {
-              ...symbolsCopy
-            }
+            symbols: {...symbolsCopy}
         };
       }
+      break;
 
     case UPDATE_TWITS_SYMBOL_NOT_FOUND:
       return {
@@ -38,9 +37,7 @@ export default function(state = initialState, action) {
       });
       return {
           ...state,
-            symbols: {
-              ... symbol_obj
-            }
+            symbols: {...symbol_obj}
       };
 
     case SET_TWITS_DATA:

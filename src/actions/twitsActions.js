@@ -9,14 +9,12 @@ export const twitsDeleteSymbol = (symbol, id, stock, loading) => dispatch => {
   // const api_url = "http://localhost:8888/api/users/delete-symbol";
   const api_url = "https://stock-twits-backend.herokuapp.com/api/users/delete-symbol";
 
-  console.log("CALLED DELETE SYMBOL!");
   try {
     loading();
     axios
       // .post("/users/add-symbol", {'symbol': symbol, 'id': id})
       .post(api_url, {'symbol': symbol, 'id': id, 'stock': stock})
       .then(res => {
-        console.log("Done!");
         dispatch({
           type: DELETE_TWITS_SYMBOL,
           payload: {symbol: symbol.toUpperCase()}
@@ -24,7 +22,6 @@ export const twitsDeleteSymbol = (symbol, id, stock, loading) => dispatch => {
         loading();
       }) 
       .catch(err => {
-        console.log("Error is - " + err);
         dispatch({
           type: GET_ERRORS,
           payload: err
@@ -44,7 +41,6 @@ export const twitsGetUserSymbols = (id, stock, loading) => dispatch => {
       // .post("http://localhost:8888/api/users/get-symbols", {'id': id, 'stock': stock})
       .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id, 'stock': stock})
       .then(res => {
-        console.log("jandaba - " + JSON.stringify(res.data[0].symbols));
         dispatch({
           type: GET_TWITS_USER_SYMBOLS,
           payload: res.data[0].symbols
@@ -52,7 +48,6 @@ export const twitsGetUserSymbols = (id, stock, loading) => dispatch => {
         loading();
       }) 
       .catch(err => {
-        console.log("Error is - " + err.message);
         dispatch({
           type: GET_ERRORS,
           payload: err.message
@@ -82,7 +77,6 @@ export const twitsGetData = (symbol, loading) => dispatch => {
         loading();
     }) 
     .catch(err => {
-      console.log("SECOND ERROR- " + err.message);
       dispatch({
         type: UPDATE_TWITS_SYMBOL_NOT_FOUND,
         payload: "Symbol not found"
@@ -102,15 +96,11 @@ export const twitsAddSymbol = (symbol, id, stock, loading) => dispatch => {
   // const api_url = "http://localhost:8888/api/users/add-symbol";
   const api_url = "https://stock-twits-backend.herokuapp.com/api/users/add-symbol";
 
-  // instance.defaults.headers.common['Authorization'] = '';
-  console.log("CALLED!");
   try {
     loading();
     axios
-      // .post("/users/add-symbol", {'symbol': symbol, 'id': id})
       .post(api_url, {'symbol': symbol, 'id': id, 'stock': stock})
       .then(res => {
-        console.log("Done!");
         dispatch({
           type: ADD_TWITS_SYMBOL,
           payload: symbol.toUpperCase()
@@ -118,7 +108,6 @@ export const twitsAddSymbol = (symbol, id, stock, loading) => dispatch => {
         loading();
       }) 
       .catch(err => {
-        console.log("Error is - " + err.message);
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data
@@ -136,7 +125,7 @@ export const updateNewSymbolInput = symbol => dispatch => {
     type: UPDATE_TWITS_SYMBOL_INPUT,
     payload: {
       str: symbol.target.value,
-      error: (symbol.target.value == 0) ? "input is empty!" : ''
+      error: (!symbol.target.value) ? "input is empty!" : ''
     }
   });
 };

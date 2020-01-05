@@ -19,7 +19,7 @@ const addSymbol = props => {
 
     const checkFocusIn = (event) => {
         props.change(event);
-        if (event.target.value.length == 0) {
+        if (event.target.value.length === 0) {
             let element = document.getElementById('add_symbol');
             let red_text = document.getElementById('symbol-red-text');
             red_text.innerHTML = props.error;
@@ -36,7 +36,7 @@ const addSymbol = props => {
             <div className="input-field col s6">
                 <input id="add_symbol" type="text"
                 className={classnames("", {
-                        invalid: (props.error != '') ? true : false 
+                        invalid: (props.error !== '') ? true : false 
                         // invalid : true
                     })}
                     error="eg" value={props.inputValue} onChange={props.change}

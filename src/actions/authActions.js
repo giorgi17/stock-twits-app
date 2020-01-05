@@ -77,7 +77,6 @@ export const loginUser = (userData, loading) => dispatch => {
 };
 // Set logged in user
 export const setCurrentUser = decoded => {
-  console.log("Set logged in user - dispatched!");
   return {
     type: SET_CURRENT_USER,
     payload: decoded

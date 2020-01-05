@@ -4,7 +4,7 @@ import loadingGif from '../../../assets/images/loading.gif';
 
 const loading = () => (
     <div id="loading-modal">
-        <img src={loadingGif} id="loadingGif"
+        <img src={loadingGif} id="loadingGif" alt="stock-twit-loading-pic"
           width="500px" height="300px" align="center"></img>
     </div>
 );

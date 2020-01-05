@@ -8,8 +8,8 @@ const TwitCard = props => {
 
     if (props.pic.chart) {
         let picId = props.keyId + "twitpic";
-        pic = <img src={props.pic.chart.original} id={picId}
-                    className="twitImage" height="268" width="480"></img>;
+        pic = <img src={props.pic.chart.original} id={picId} alt="stocktwit-pic"
+                    className="twitImage" height="268" width="480" ></img>;
     } else {
         pic = '';
     }
@@ -19,16 +19,16 @@ const TwitCard = props => {
             <div className="col s12 m6">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <img src={props.avatar}></img>
+                        <img src={props.avatar} alt="stocktwit-avatar-pic" ></img>
                             <span className="card-title">Username: {props.username}</span>
                         <p>{props.content}</p><br></br>
                         {pic}
                         {props.pic.chart ? <ModalImage keyId={props.keyId}></ModalImage> : null}
                     </div>
-                    <div className="card-action">
+                    {/* <div className="card-action">
                         <a href="#">This is a link</a>
                         <a href="#">This is a link</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

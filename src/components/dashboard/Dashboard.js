@@ -9,7 +9,6 @@ import TwitCard from './twitCard/TwitCard';
 import Controls from './controls/Controls';
 import AddSymbol from './controls/addSymbol/AddSymbol';
 import Loading from '../layout/Loading/Loading';
-import axios from "axios";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -46,20 +45,10 @@ componentDidMount() {
   const whichUser = user.hasOwnProperty("access_token") ? true : false;
   const whichUserId = user.hasOwnProperty("access_token") ? this.props.auth.user.user_id : this.props.auth.user.id;
   this.props.twitsGetUserSymbols(whichUserId, whichUser, this.props.setUserLoading);
-  console.log("Fuck u 2 - " + this.props.twitsDeleteSymbol);
-}
-
-componentWillUpdate() {
-  // setTimeout(function() {
-  //   //your code to be executed after 1 second
-  //   console.log(this.props);
-  // }, 3000);
-  console.log("Will update");
-  console.log(this.props.twits);
 }
 
 componentDidUpdate() {
-  console.log(this.props.twits);
+ 
 }
 
 render() {
@@ -67,7 +56,7 @@ render() {
     const { user, loading } = this.props.auth;
     let twitData;
 
-    if (this.props.twits.data.length != 0) {
+    if (this.props.twits.data.length !== 0) {
 
       twitData = this.props.twits.data.map(item => {
         return <TwitCard content={item.body} username={item.user.username}
@@ -95,7 +84,7 @@ return (
               <b>Hey there,</b> {user.hasOwnProperty("access_token") ? user.username.split(" ")[0] : user.name.split(" ")[0]}
               <p className="flow-text grey-text text-darken-1">
                 You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+                <span style={{ fontFamily: "monospace" }}>StockTwits App</span> app 👏
               </p>
             </h4>
             <button

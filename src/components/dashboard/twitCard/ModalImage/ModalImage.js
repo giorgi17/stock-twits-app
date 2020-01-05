@@ -12,13 +12,10 @@ const ModalImage = props => {
         var img = document.getElementById(picId);
         var modalImg = document.getElementById(props.keyId);
         var captionText = document.getElementById("caption");
-        console.log("THIS IS img - " + img);
-        console.log(img);
+        
         img.onclick = function(){
             modal.style.display = "block";
             modalImg.src = this.src;
-            // console.log("THIS IS ")
-            console.log("THIS IS SRC - " + this.src);
             captionText.innerHTML = this.alt;
         }
 
@@ -30,7 +27,7 @@ const ModalImage = props => {
             modal.style.display = "none";   
         }
     } catch (e) {
-        console.log(e.message);
+        // console.log(e.message);
     }
 
     return    (<React.Fragment>
@@ -44,7 +41,7 @@ const ModalImage = props => {
                 <span id={props.keyId + "twitpicclose"} className="close">&times;</span>
 
                 {/* <!-- Modal Content (The Image) --> */}
-                <img className="modal-content" id={props.keyId}></img>
+                <img className="modal-content" alt="stock-twit-modal-pic" id={props.keyId}></img>
 
                 {/* <!-- Modal Caption (Image Text) --> */}
                 <div id="caption"></div>
