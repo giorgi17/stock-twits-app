@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser, setUserLoading } from "../../actions/authActions";
 import classnames from "classnames";
+import stocktwitsLogo from '../../assets/images/stocktwits-logo.png';
 
 class Register extends Component {
   constructor() {
@@ -24,17 +25,23 @@ componentDidMount() {
   }
 }
 
-componentWillReceiveProps(nextProps) {
-  if (nextProps.errors) {
-    this.setState({
-      errors: nextProps.errors
-    });
-  }
-}
+// componentDidUpdate(prevProps, prevState) {
+//   if (this.state.errors) {
+//     this.setState({
+//       errors: state.errors
+//     });
+//   }
+// }
 
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+onStocktwitsSubmit = e => {
+  this.props.setUserLoading();
+  // this.props.history.push("https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login");
+  window.location.href = 'https://stock-twits-backend.herokuapp.com/api/stocktwits-oauth/stocktwits-login'; 
+}
 
 onSubmit = e => {
       e.preventDefault();
@@ -44,7 +51,7 @@ onSubmit = e => {
         password: this.state.password,
         password2: this.state.password2
       };
-  console.log(newUser);
+  // console.log(newUser);
   this.props.registerUser(newUser, this.props.history, this.props.setUserLoading); 
   };
   
@@ -123,7 +130,7 @@ return (
                 <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <div className="col s12 m12 l12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
                     width: "150px",
@@ -138,6 +145,24 @@ return (
                 </button>
               </div>
             </form>
+            {/* Login/Register with stocktwits */}
+            <div className="col s12 m12 l12" style={{ paddingLeft: "11.250px" }}>
+                <button
+                    style={{
+                      width: "150px",
+                      paddingBottom: "100px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem"
+                    }}
+                    onClick={this.onStocktwitsSubmit}
+                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  >
+                    Login with stocktwits <img src={stocktwitsLogo} alt="stock-twit-login-pic" width="100px" height="42px" ></img>
+                    <br></br>
+                  </button>
+                  {/* <img src={stocktwitsLogo} width="100px" height="42px" ></img> */}
+              </div>
           </div>
         </div>
       </div>
