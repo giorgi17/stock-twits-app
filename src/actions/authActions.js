@@ -40,13 +40,11 @@ export const loginTwitsUser = (queryStringData, loading) => dispatch => {
       console.log(decoded);
       // Set current user
       dispatch(setCurrentUser(decoded));
-      loading();
   } catch (err) {
       dispatch({
         type: GET_ERRORS,
         payload: err
       });
-      loading();
   }      
 };
 
