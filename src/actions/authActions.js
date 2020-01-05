@@ -9,12 +9,12 @@ import {
 
 // Register User
 export const registerUser = (userData, history, loading) => dispatch => {
-  loading();
+  // loading();
   axios
     // .post("http://localhost:8888/api/users/register", userData)
     .post("https://stock-twits-backend.herokuapp.com/api/users/register", userData)
     .then(res => {
-        loading();
+        // loading();
         history.push("/login");
     }) // re-direct to login on successful register
     .catch(err =>
@@ -50,12 +50,12 @@ export const loginTwitsUser = (queryStringData, loading) => dispatch => {
 
 // Login - get user token
 export const loginUser = (userData, loading) => dispatch => {
-  loading();
+  // loading();
   axios
     // .post("http://localhost:8888/api/users/login", userData)
     .post("https://stock-twits-backend.herokuapp.com/api/users/login", userData)
     .then(res => {
-        loading();
+        // loading();
         // Save to localStorage
   // Set token to localStorage
         const { token } = res.data;
@@ -72,7 +72,7 @@ export const loginUser = (userData, loading) => dispatch => {
           type: GET_ERRORS,
           payload: err.response.data
         });
-        loading();
+        // loading();
       });
 };
 // Set logged in user
