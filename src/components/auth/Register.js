@@ -56,7 +56,7 @@ onSubmit = e => {
   };
   
 render() {
-    const { errors } = this.state;
+    const { errors } = this.props;
 return (
       <div className="container">
         <div className="row">
