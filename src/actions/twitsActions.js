@@ -6,8 +6,8 @@ import { SET_TWITS_DATA, ADD_TWITS_SYMBOL, UPDATE_TWITS_SYMBOL_INPUT,
 
 // DELETING CHOSEN SYMBOL
 export const twitsDeleteSymbol = (symbol, id, stock, loading) => dispatch => {
-  const api_url = "http://localhost:8888/api/users/delete-symbol";
-  // const api_url = "https://stock-twits-backend.herokuapp.com/api/users/delete-symbol";
+  // const api_url = "http://localhost:8888/api/users/delete-symbol";
+  const api_url = "https://stock-twits-backend.herokuapp.com/api/users/delete-symbol";
 
   try {
     loading();
@@ -38,8 +38,8 @@ export const twitsGetUserSymbols = (id, stock, loading) => dispatch => {
   try {
     loading();
     axios
-      .post("http://localhost:8888/api/users/get-symbols", {'id': id, 'stock': stock})
-      // .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id, 'stock': stock})
+      // .post("http://localhost:8888/api/users/get-symbols", {'id': id, 'stock': stock})
+      .post("https://stock-twits-backend.herokuapp.com/api/users/get-symbols", {'id': id, 'stock': stock})
       .then(res => {
         dispatch({
           type: GET_TWITS_USER_SYMBOLS,
@@ -62,8 +62,8 @@ export const twitsGetUserSymbols = (id, stock, loading) => dispatch => {
 
 // GETTING DATA FOR A CERTAIN SYMBOL
 export const twitsGetData = (symbol, loading) => dispatch => {
-  const api_url = "http://localhost:8888/api/users/get-twits-data";
-  // const api_url = "https://stock-twits-backend.herokuapp.com/api/users/get-twits-data";
+  // const api_url = "http://localhost:8888/api/users/get-twits-data";
+  const api_url = "https://stock-twits-backend.herokuapp.com/api/users/get-twits-data";
 
   loading();
   axios
@@ -93,8 +93,8 @@ export const twitsGetData = (symbol, loading) => dispatch => {
 
 // ADDING NEW SYMBOL
 export const twitsAddSymbol = (symbol, id, stock, loading) => dispatch => {
-  const api_url = "http://localhost:8888/api/users/add-symbol";
-  // const api_url = "https://stock-twits-backend.herokuapp.com/api/users/add-symbol";
+  // const api_url = "http://localhost:8888/api/users/add-symbol";
+  const api_url = "https://stock-twits-backend.herokuapp.com/api/users/add-symbol";
 
   try {
     loading();
