@@ -106,7 +106,7 @@ return (
           &nbsp;&nbsp;&nbsp; <div className="col l3 center-align">
                                 <h3><b>Select symbol</b></h3>
                               </div>
-          <Controls symbols={Object.keys(this.props.twits.symbols)} change={this.props.twitsGetData} userId={this.props.auth.user} deleteSymbolAction={this.props.twitsDeleteSymbol} loading={this.props.setUserLoading}></Controls>
+          <Controls symbols={Object.keys(this.props.twits.symbols)} change={this.props.twitsGetData} userId={this.props.auth.user} deleteSymbolAction={this.props.twitsDeleteSymbol} loading={this.props.setUserLoading} twitsCounter={this.props.twits.twitsCount}></Controls>
         </div>
           
         <div className="row controls valign-wrapper">

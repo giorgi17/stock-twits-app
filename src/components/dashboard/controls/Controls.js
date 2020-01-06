@@ -29,7 +29,8 @@ const Controls = props => {
                     {props.symbols.map(item => 
                         <option value={item} key={item}>{item}</option>
                     )}
-                </select> 
+                </select><br></br> 
+                    <h2>Twits count: {props.twitsCounter}</h2>
                 {/* <a className="waves-effect waves-light btn">button17</a> */}
             </div>
         </div>

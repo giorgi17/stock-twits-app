@@ -5,6 +5,7 @@ const initialState = {
     data: [],
     addNewSymbolInput: '',
     addNewSymbolInputError: '',
+    twitsCount: 0,
     symbols: {
 
     }
@@ -27,6 +28,7 @@ export default function(state = initialState, action) {
     case UPDATE_TWITS_SYMBOL_NOT_FOUND:
       return {
           ...state,
+          twitsCount: 0,
             data: []
       };
 
@@ -44,6 +46,7 @@ export default function(state = initialState, action) {
       return {
           ...state,
             data: action.payload.messages,
+            twitsCount: action.payload.messages.length,
             symbols: {
               ...state.symbols,
               [action.payload.symbol.symbol]: action.payload.messages.length
