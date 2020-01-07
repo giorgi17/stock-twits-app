@@ -28,14 +28,14 @@ componentDidMount() {
   }
 }
 
-componentWillReceiveProps(nextProps) {
-  if (nextProps.auth.isAuthenticated) {
-    this.props.history.push("/dashboard"); // push user to dashboard when they login
+static getDerivedStateFromProps(props, state) {
+  if (props.auth.isAuthenticated) {
+    props.history.push("/dashboard"); // push user to dashboard when they login
   }
-if (nextProps.errors) {
-    this.setState({
-      errors: nextProps.errors
-    });
+  if (props.errors) {
+      return {
+        errors: props.errors
+      };
   }
 }
 

@@ -25,13 +25,13 @@ componentDidMount() {
   }
 }
 
-// componentDidUpdate(prevProps, prevState) {
-//   if (this.state.errors) {
-//     this.setState({
-//       errors: state.errors
-//     });
-//   }
-// }
+static getDerivedStateFromProps(props, state) {
+  if (props.errors) {
+        return {
+          errors: props.errors
+        };
+    }
+}
 
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -56,7 +56,7 @@ onSubmit = e => {
   };
   
 render() {
-    const { errors } = this.props;
+    const { errors } = this.state;
 return (
       <div className="container">
         <div className="row">
